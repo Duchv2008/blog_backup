@@ -54,14 +54,35 @@ import RealmSwift
 ```
 import RealmSwift
 
-class PersonalInfo: Object {
-    @Persisted var name: String = ""
-    @Persisted var birthdate: String = ""
-
-    convenience init(name: String, birthdate: String) {
+class Todo: Object {
+    @Persisted(primaryKey: true) var _id: ObjectId
+    
+    @Persisted var name: String?
+    @Persisted var status: String?
+    @Persisted var ownerId: String?
+    
+    
+    /**
+     convenience là một hàm init phụ trợ. Chúng ta có thể sử lý logic đối với các hàm init convenience
+     convenience: Cho phép ta gọi hàm khởi tạo khác của class
+     example:
+     convenience init(name: String, andAge age: Int) throws {
+         if name.isEmpty {
+             throw InvalidPersonError.EmptyName
+         }
+         
+         if age < 0 {
+             throw InvalidPersonError.InvalidAge
+         }
+         
+         self.init(name: name, age: age)
+     }
+     */
+    convenience init(name: String? = nil, ownerId: String? = nil , status: String? = nil) {
         self.init()
         self.name = name
-        self.birthdate = birthdate
+        self.ownerId = ownerId
+        self.status = status
     }
 }
 ```
