@@ -44,7 +44,16 @@ pod install
 
 Ví dụ với collection là `PersonalInfo` với các thuộc tính là id, tên, ngày sinh.
 
+# Import realm thư viện
+
 ```
+import RealmSwift
+```
+
+
+```
+import RealmSwift
+
 class PersonalInfo: Object {
     @Persisted var name: String = ""
     @Persisted var birthdate: String = ""
